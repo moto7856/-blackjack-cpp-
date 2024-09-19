@@ -1,0 +1,2 @@
+# -blackjack-cpp-
+simple Blackjack
