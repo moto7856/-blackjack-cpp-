@@ -1,55 +1,56 @@
-Inicio del juego
+Nombre del Algoritmo:Blackjack juego de barajas
+Declaracion de variables:
+jugador;maquib, carta como entero
+cadena:jugador_mensaje,mensaje_maquib
+Declaracion de Variables:
+Logico:Is jugador
+1-Inicio
+2-Hacer carta=draw_card()
+3.-si jugador Entonces
+Inicio
+Hacer jugador+=carta
+Hacer Jugador_mensaje
+Fin
+Si no
+Inicio
+Hacer maquib+carta
+Hacer mensaje_maquib
+ fin
+si jugador>21 entonces
+Inicio
+Escribir "perdiste"
+Rompiste
+Fin
+Si no
+Si jugador=21 entonces
+Inicio
+Escribir"Ganaste"
+Rompiste
+Fin
+Fin
+Nombre del subproceso: giro de la maquina()
+1-Inicio
+2-Si maquina<jugador Entonces
+Inicio
+Escribir"Ganaste"
+Fin
+Si no
+fin
+Nombre del subproceso:IntGame()
+1-Inicio
+2-Escribir"Bienvenido a blackjack
+3-Hacer jugador=0, maquinab=0,
+jugador_mensaje="El jugador tiene:",
+mensaje_maquib="La maquina tiene:"
+4.-Hacer plus_crad(true)
+6.-Hacer  plus_crad(true)
+7.-Hacer  plus_crad(true)
+8.-Fin
+1.-Inicio
+2.-Hacer initGame()
+3.-Hacer player_turn()
+4.-Hacer mcahine turn()
 
-Definir baraja como una lista de cartas
-Definir jugadores como una lista de objetos jugador
 
-Inicializar baraja con cartas del 1 al 11 (asumiendo que 10, J, Q, K cuentan como 10)
 
-Barajar baraja
 
-Para cada jugador en jugadores hacer
-    Repartir 2 cartas al jugador
-    Calcular valor inicial del jugador
-Fin Para
-
-Mientras el juego no haya terminado hacer
-    Para cada jugador en jugadores hacer
-        Mostrar cartas del jugador
-        Mostrar valor del jugador
-        Mientras el jugador decide 'pedir carta' o 'plantarse' hacer
-            Si el jugador elige 'pedir':
-                Repartir una carta al jugador
-                Calcular nuevo valor del jugador
-                Si el valor del jugador > 21 entonces
-                    Mostrar "Jugador se pasa. Pierde."
-                    Salir del bucle
-                Fin Si
-            Si el jugador elige 'plantarse':
-                Salir del bucle
-            Fin Si
-        Fin Mientras
-    Fin Para
-
-    Mostrar cartas del dealer y calcular su valor
-
-    Mientras el valor del dealer < 17 hacer
-        Repartir una carta al dealer
-        Calcular nuevo valor del dealer
-    Fin Mientras
-
-    Determinar ganador:
-    Si el valor del dealer > 21 entonces
-        Mostrar "Dealer se pasa. Jugadores ganan."
-    Sino
-        Para cada jugador en jugadores hacer
-            Si (valor del jugador > valor del dealer) entonces
-                Mostrar "Jugador gana."
-            Sino Si (valor del jugador < valor del dealer) entonces
-                Mostrar "Dealer gana."
-            Sino
-                Mostrar "Empate."
-            Fin Si
-        Fin Para
-    Fin Si
-
-Fin del juego
