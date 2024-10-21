@@ -1,35 +1,69 @@
 
-#include <conio.h>
-#include <stdio.h>
+#include <iostream>
+#include <random>
+#include <string>
 
-int main()
-{
-    int n1, n2, n3, mayor;
+using namespace std;
 
-    printf("\n   Introduzca el primer n%cmero (entero): ", 163 );
-    scanf( "%d", &n1 );
-    printf( "\n   Introduzca el segundo n%cmero (entero): ", 163 );
-    scanf( "%d", &n2 );
-    printf( "\n   Introduzca el tercer n%cmero (entero): ", 163 );
-    scanf( "%d", &n3 );
+int player = 0;
+int dealer = 0;
+string playerMessage = "Las cartas del jugador son: ";
+string dealerMessage = "Las cartas del dealer son: ";
+int cards[52];
 
-    if ( n1 > n2 )
+void createDeck() {
+    int cardValue = 2;
+    int cardCount = 0;
+    for (int figure = 1; figure <= 4; figure++) {
+        for (int card = 1; card <= 13; card++) {
+            switch (card) {
+                case 10:
+                case 11:
+                case 12:
+                    cardValue = 10;
+                break;
+                case 13:
+                    cardValue = 11;
+                break;
+                default:
+                    break;
+            }
+            cards[cardCount] = cardValue;
+            cardCount++;
+            cardValue++;
+        }
+        cardValue = 2;
+    }
+}
 
-        if ( n1 > n3 )
-            mayor = n1;
-        else
-            mayor = n3;
+int drawCard() {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> dist(1, 52);
+    int card = dist(gen);
+    return cards[card - 1];
+}
 
-        else
+void initGame() {
+    player = drawCard() + drawCard();
+    dealer = drawCard() + drawCard();
+    cout << playerMessage << player << endl;
+    cout << dealerMessage << dealer << endl;
+}
 
-            if ( n2 > n3 )
-                mayor = n2;
-            else
-                mayor = n3;
+void checkWinner() {
+    if (player == 21 || (player > dealer && player <= 21)) {
+        cout << "Ganaste" << endl;
+    } else if (player == dealer) {
+        cout << "Empate" << endl;
+    } else {
+        cout << "Perdiste" << endl;
+    }
+}
 
-    printf( "\n   %d es el mayor.", mayor );
-
-    getch(); /* Pausa */
-
+int main() {
+    createDeck();
+    initGame();
+    checkWinner();
     return 0;
 }
