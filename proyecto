@@ -1,0 +1,64 @@
+import java.util.Random;
+class Blackjack {
+
+    static int player = 0;
+    static int dealer = 0;
+    static String playerMessage = "Las cartas del jugador son: ";
+    static String dealerMessage = "Las cartas del dealer son: ";
+    static int[] cards = new int[52];
+
+    public static void createDeck() {
+        int cardValue = 2;
+        int cardCount = 0;
+        for (int suit = 1; suit <= 4; suit++) {
+            for (int card = 1; card <= 13; card++) {
+                switch (card) {
+                    case 10:
+                    case 11:
+                    case 12:
+                        cardValue = 10; // J, Q, K valen 10
+                        break;
+                    case 13:
+                        cardValue = 11; // El As puede valer 11
+                        break;
+                    default:
+                        break;
+                }
+                cards[cardCount] = cardValue;
+                cardCount++;
+                cardValue++;
+            }
+            cardValue = 2; // Reinicia el valor para el siguiente palo
+        }
+    }
+
+    public static int drawCard() {
+        Random random = new Random();
+        int card = random.nextInt(52); // Genera un número aleatorio entre 0 y 51
+        return cards[card]; // Retorna el valor de la carta
+    }
+
+    public static void initGame() {
+        player = drawCard() + drawCard();
+        dealer = drawCard() + drawCard();
+        System.out.println(playerMessage + player);
+        System.out.println(dealerMessage + dealer);
+    }
+
+    public static void checkWinner() {
+        if (player == 21 || (player > dealer && player <= 21)) {
+            System.out.println("Ganaste");
+        } else if (player == dealer) {
+            System.out.println("Empate");
+        } else {
+            System.out.println("Perdiste");
+        }
+    }
+
+    public static void main(String[] args) {
+        createDeck();
+        initGame();
+        checkWinner();
+    }
+}
+
